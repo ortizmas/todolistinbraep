@@ -169,7 +169,7 @@ export default {
     updateTask(id) {
       axios
         .put(`${url}/todolists/${id}`, {
-          task: this.task,
+          name: this.task,
         })
         .then((response) => {
           console.log(response);

@@ -69,11 +69,11 @@ class TodolistController extends Controller
     {
         $request->validate(
             [
-                'task' => 'required',
+                'name' => 'required',
             ]
         );
 
-        $todolist->name = $request->task;
+        $todolist->name = $request->name;
         $todolist->save();
 
         Log::info("A tarefa com ID {$todolist->id} foi alterado");

@@ -4,7 +4,8 @@
       <div class="col-md-6 mt-5">
         <div class="card">
           <div class="card-header bg-dark">
-            <h5 class="text-white">To-Do List</h5>
+            <h5 class="text-white">TO-DO List</h5>
+            <small class="text-white">Dados armazenados em localStorage</small>
           </div>
           <div class="card-body">
             <div class="d-flex">
