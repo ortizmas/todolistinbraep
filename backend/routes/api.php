@@ -1,4 +1,6 @@
 <?php
+header('Access-Control-Allow-Methods:  POST, GET, OPTIONS, PUT, DELETE');
+header('Access-Control-Allow-Headers:  Content-Type, X-Auth-Token, Origin, Authorization');
 
 use App\Http\Controllers\Api\TodolistController;
 use Illuminate\Http\Request;
@@ -20,3 +22,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('todolists', TodolistController::class);
+Route::patch('todolists/status/{id}', [TodolistController::class, 'statusUpdate']);
+

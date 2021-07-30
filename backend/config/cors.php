@@ -15,15 +15,17 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    //'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
-    'allowed_methods' => ['*'],
+    'paths' => ['api/*', 'api/todolists/*', 'api/users/*', '*'],
 
-    'allowed_origins' => ['*'],
+    'allowed_methods' => ['POST', 'GET', 'DELETE', 'PUT', 'PATCH', '*'],
+
+    'allowed_origins' => ['http://10.41.51.14:8081', '*'],
 
     'allowed_origins_patterns' => [],
 
-    'allowed_headers' => ['*'],
+    'allowed_headers' => ['X-Custom-Header', 'Upgrade-Insecure-Requests', '*'],
 
     'exposed_headers' => [],
 

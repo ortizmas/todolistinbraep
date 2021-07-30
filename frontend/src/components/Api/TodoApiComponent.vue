@@ -49,29 +49,36 @@
                   <td>
                     <span
                       class="badge bg-warning pointer"
-                      @click="updateStatusTask(index)"
+                      @click="updateStatusTask(task.id, index)"
                       v-if="task.status === 'to-do'"
                       >Pendência</span
                     >
                     <span
                       class="badge bg-info pointer"
-                      @click="updateStatusTask(index)"
+                      @click="updateStatusTask(task.id, index)"
                       v-else-if="task.status === 'in-progress'"
                       >Em andamento</span
                     >
                     <span
                       class="badge bg-success pointer"
-                      @click="updateStatusTask(index)"
-                      v-else>Concluido</span
+                      @click="updateStatusTask(task.id, index)"
+                      v-else
+                      >Concluido</span
                     >
                   </td>
                   <td class="text-center w-10">
-                    <a class="pointer float-end" @click="editTask(task.id, index)">
+                    <a
+                      class="pointer float-end"
+                      @click="editTask(task.id, index)"
+                    >
                       <i class="fa fa-edit text-dark"></i>
                     </a>
                   </td>
                   <td class="text-center w-10">
-                    <a class="pointer float-end" @click="deleteTask(task.id, index)">
+                    <a
+                      class="pointer float-end"
+                      @click="deleteTask(task.id, index)"
+                    >
                       <i class="fa fa-trash-alt text-danger"></i>
                     </a>
                   </td>
@@ -86,7 +93,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   name: "TodoApiComponent",
@@ -104,16 +111,19 @@ export default {
     };
   },
 
-  created(){
+  created() {
     this.getAllTasks();
   },
   methods: {
-    getAllTasks(){
-        axios.get('http://127.0.0.1:8000/api/todolists').then(response => {
-            this.tasks = response.data.data;
-        }).catch(error => {
-            console.log(error);
+    getAllTasks() {
+      axios
+        .get("http://127.0.0.1:8000/api/todolists")
+        .then((response) => {
+          this.tasks = response.data.data;
         })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     submitTask() {
@@ -124,20 +134,28 @@ export default {
           name: this.task,
           status: "to-do",
         });
+        this.createTask();
       } else {
         this.tasks[this.editedTask].name = this.task;
         this.editedTask = null;
 
-        axios.put('http://127.0.0.1:8000/api/todolists/' + this.id, {
-          task: this.task
-        }).then(response => {
-          console.log(response)
-        }).catch(error => {
-          console.log(error);
-        })
+        this.updateTask(this.id);
       }
       this.task = "";
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+    },
+
+    createTask() {
+      axios
+        .post("http://127.0.0.1:8000/api/todolists", {
+          name: this.task,
+          status: "to-do",
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
     editTask(id, index) {
@@ -146,24 +164,49 @@ export default {
       this.id = id;
     },
 
-    updateStatusTask(index) {
+    updateTask(id) {
+      axios
+        .put("http://127.0.0.1:8000/api/todolists/" + id, {
+          task: this.task,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+
+    updateStatusTask(id, index) {
       let newIndex = this.availableStatuses.indexOf(this.tasks[index].status);
       if (++newIndex > 2) {
         newIndex = 0;
       }
       this.tasks[index].status = this.availableStatuses[newIndex];
-      localStorage.setItem('tasks', JSON.stringify(this.tasks));
+      //localStorage.setItem("tasks", JSON.stringify(this.tasks));
+      console.log(this.tasks[index].status);
+      axios
+        .patch("http://127.0.0.1:8000/api/todolists/status/" + id, {
+          status: this.tasks[index].status,
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
 
-    deleteTask(id, index) { 
-      axios.delete('http://127.0.0.1:8000/api/todolists/' + id)
-      .then(response => {
-        this.tasks.splice(index, 1);
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      })
+    deleteTask(id, index) {
+      axios
+        .delete("http://127.0.0.1:8000/api/todolists/" + id)
+        .then((response) => {
+          this.tasks.splice(index, 1);
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     },
   },
 };

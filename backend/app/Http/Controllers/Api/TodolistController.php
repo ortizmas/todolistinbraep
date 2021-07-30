@@ -17,15 +17,9 @@ class TodolistController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $todolists = Todolist::all();
-        // return response(
-        //     [
-        //         'todolist' => TodolistResource::collection($todolists),
-        //         'message' => "Successful!!"
-        //     ], 200
-        // );
         return (new TodolistCollection($todolists))->response();
     }
 
@@ -85,6 +79,21 @@ class TodolistController extends Controller
         Log::info("A tarefa com ID {$todolist->id} foi alterado");
 
         return (new TodolistResource($todolist))->response();
+    }
+
+    public function statusUpdate(Request $request, $id)
+    {
+        $todolist = Todolist::find($id);
+        $todolist['status'] = $request->status;
+        $todolist->save();
+
+        Log::info("O status da tarefa com ID {$id} foi alterado");
+
+        return response(
+            [
+                'message' => "Status Atualizado!!"
+            ], 200
+        );
     }
 
     /**
