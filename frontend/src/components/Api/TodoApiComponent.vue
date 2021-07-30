@@ -94,6 +94,7 @@
 
 <script>
 import axios from "axios";
+import url from "../../config";
 
 export default {
   name: "TodoApiComponent",
@@ -114,10 +115,11 @@ export default {
   created() {
     this.getAllTasks();
   },
+
   methods: {
     getAllTasks() {
       axios
-        .get("http://127.0.0.1:8000/api/todolists")
+        .get(`${url}/todolists`)
         .then((response) => {
           this.tasks = response.data.data;
         })
@@ -146,7 +148,7 @@ export default {
 
     createTask() {
       axios
-        .post("http://127.0.0.1:8000/api/todolists", {
+        .post(`${url}/todolists`, {
           name: this.task,
           status: "to-do",
         })
@@ -166,7 +168,7 @@ export default {
 
     updateTask(id) {
       axios
-        .put("http://127.0.0.1:8000/api/todolists/" + id, {
+        .put(`${url}/todolists/${id}`, {
           task: this.task,
         })
         .then((response) => {
@@ -183,10 +185,9 @@ export default {
         newIndex = 0;
       }
       this.tasks[index].status = this.availableStatuses[newIndex];
-      //localStorage.setItem("tasks", JSON.stringify(this.tasks));
-      console.log(this.tasks[index].status);
+
       axios
-        .patch("http://127.0.0.1:8000/api/todolists/status/" + id, {
+        .patch(`${url}/todolists/status/${id}`, {
           status: this.tasks[index].status,
         })
         .then((response) => {
@@ -199,7 +200,7 @@ export default {
 
     deleteTask(id, index) {
       axios
-        .delete("http://127.0.0.1:8000/api/todolists/" + id)
+        .delete(`${url}/todolists/${id}`)
         .then((response) => {
           this.tasks.splice(index, 1);
           console.log(response);
