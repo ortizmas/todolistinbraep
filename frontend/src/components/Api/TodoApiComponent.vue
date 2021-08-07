@@ -154,6 +154,7 @@ export default {
         })
         .then((response) => {
           console.log(response);
+          this.getAllTasks();
         })
         .catch((error) => {
           console.log(error);
@@ -199,6 +200,7 @@ export default {
     },
 
     deleteTask(id, index) {
+      console.log(id);
       axios
         .delete(`${url}/todolists/${id}`)
         .then((response) => {
