@@ -10,12 +10,20 @@
           <div class="card-body">
             <div class="d-flex">
               <input
+                v-model="taskOne"
+                type="text"
+                placeholder="Adicionar tarefa one"
+                class="form-control rounded-0"
+              />
+              <input
                 v-model="task"
                 v-on:keyup.enter="submitTask"
                 type="text"
                 placeholder="Adicionar tarefa"
                 class="form-control rounded-0"
+                v-bind:readonly="validateReadonlyInput()"
               />
+              
               <button
                 @click="submitTask"
                 type="submit"
@@ -96,11 +104,29 @@ export default {
   data() {
     return {
       task: "",
+      taskOne: "Test",
       editedTask: null,
       availableStatuses: ["to-do", "in-progress", "finished"],
-
+      validateReadonly: '',
       tasks: [],
     };
+  },
+
+  computed: {
+    validated(){
+      if (this.validateReadonly != '') {
+        return true;
+      }
+
+      return false;
+    },
+    validatedInput(){
+      if (this.taskOne != '') {
+        return true;
+      }
+
+      return false;
+    }
   },
 
   created(){
@@ -112,6 +138,14 @@ export default {
     }
   },
   methods: {
+    validateReadonlyInput() {
+      if (this.taskOne != '') {
+        return true;
+      }
+
+      return false;
+    },
+
 
     submitTask() {
       if (this.task.length === 0) return;

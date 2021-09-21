@@ -14,6 +14,7 @@
                 type="text"
                 placeholder="Adicionar tarefa"
                 class="form-control rounded-0"
+                v-bind:readonly="readonly"
               />
               <button
                 @click="submitTask"
