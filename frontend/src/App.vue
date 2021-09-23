@@ -4,7 +4,6 @@
         <router-link to="/todolist">Todo</router-link> -->
         <router-view></router-view>
     </div>
-    
 </template>
 
 <script>

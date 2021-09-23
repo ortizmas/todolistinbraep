@@ -2,7 +2,8 @@ import { createWebHistory, createRouter } from 'vue-router';
 
 import TodoComponent from "@/components/Todo/TodoComponent";
 import TodoApiComponent from "@/components/Api/TodoApiComponent";
-import ComponentAulaOne from "@/components/Aula-one/ComponentAulaOne";
+import ComponentAulaOne from "@/components/Aulas/ComponentAulaOne";
+import ComponentAulaTwo from "@/components/Aulas/ComponentAulaTwo";
 
 
 const routes = [
@@ -17,9 +18,14 @@ const routes = [
 		component: TodoApiComponent
 	},
 	{
-		path: "/aula-one",
+		path: "/aula1",
 		name: "AulaOne",
 		component: ComponentAulaOne
+	},
+	{
+		path: "/aula2",
+		name: "AulaTwo",
+		component: ComponentAulaTwo
 	}
 ];
 
