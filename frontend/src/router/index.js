@@ -4,6 +4,8 @@ import TodoComponent from "@/components/Todo/TodoComponent";
 import TodoApiComponent from "@/components/Api/TodoApiComponent";
 import ComponentAulaOne from "@/components/Aulas/ComponentAulaOne";
 import ComponentAulaTwo from "@/components/Aulas/ComponentAulaTwo";
+import ComponentAulaThree from "@/components/Aulas/ComponentAulaThree";
+
 
 
 const routes = [
@@ -26,6 +28,11 @@ const routes = [
 		path: "/aula2",
 		name: "AulaTwo",
 		component: ComponentAulaTwo
+	},
+	{
+		path: "/aula3",
+		name: "AulaThree",
+		component: ComponentAulaThree
 	}
 ];
 
