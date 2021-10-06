@@ -5,6 +5,7 @@ import TodoApiComponent from "@/components/Api/TodoApiComponent";
 import ComponentAulaOne from "@/components/Aulas/ComponentAulaOne";
 import ComponentAulaTwo from "@/components/Aulas/ComponentAulaTwo";
 import ComponentRepeatingForms from "@/components/Aulas/ComponentRepeatingForms";
+import TodoItems from '@/components/TodoItem/TodoItem';
 
 
 const routes = [
@@ -32,6 +33,11 @@ const routes = [
 		path: "/repeating-forms",
 		name: "RepeatingForm",
 		component: ComponentRepeatingForms
+	},
+	{
+		path: "/components",
+		name: "TodoItems",
+		component: TodoItems
 	}
 ];
 
