@@ -4,7 +4,8 @@ import TodoComponent from "@/components/Todo/TodoComponent";
 import TodoApiComponent from "@/components/Api/TodoApiComponent";
 import ComponentAulaOne from "@/components/Aulas/ComponentAulaOne";
 import ComponentAulaTwo from "@/components/Aulas/ComponentAulaTwo";
-import ComponentAulaThree from "@/components/Aulas/ComponentAulaThree";
+import ComponentRepeatingForms from "@/components/Aulas/ComponentRepeatingForms";
+import TodoItems from '@/components/TodoItem/TodoItem';
 
 
 
@@ -30,9 +31,14 @@ const routes = [
 		component: ComponentAulaTwo
 	},
 	{
-		path: "/aula3",
-		name: "AulaThree",
-		component: ComponentAulaThree
+		path: "/repeating-forms",
+		name: "RepeatingForm",
+		component: ComponentRepeatingForms
+	},
+	{
+		path: "/components",
+		name: "TodoItems",
+		component: TodoItems
 	}
 ];
 
