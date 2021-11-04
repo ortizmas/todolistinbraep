@@ -6,8 +6,7 @@ import ComponentAulaOne from "@/components/Aulas/ComponentAulaOne";
 import ComponentAulaTwo from "@/components/Aulas/ComponentAulaTwo";
 import ComponentRepeatingForms from "@/components/Aulas/ComponentRepeatingForms";
 import TodoItems from '@/components/TodoItem/TodoItem';
-
-
+import ClassOne from '@/components/Aulatwo/View';
 
 const routes = [
 	{
@@ -39,7 +38,13 @@ const routes = [
 		path: "/components",
 		name: "TodoItems",
 		component: TodoItems
+	},
+	{
+		path: "/classone",
+		name: "ClassOne",
+		component: ClassOne
 	}
+
 ];
 
 const router = createRouter({

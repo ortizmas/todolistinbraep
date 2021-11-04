@@ -7,9 +7,10 @@
 </template>
 
 <script>
-
+import { store } from '@/components/Aulatwo/storeVuex'
 export default {
-  name: 'App'
+  name: 'App',
+  store
 }
 
 </script>
